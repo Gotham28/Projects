@@ -1,0 +1,85 @@
+/* Universal Selector */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styles */
+body {
+    background-color: lightyellow;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Title Styling */
+.title {
+    text-align: center;
+    color: red;
+}
+
+/* Header Styling */
+h2 {
+    text-decoration: underline;
+}
+
+/* Highlighted Text */
+.highlight {
+    background-color: yellow;
+    font-weight: bold;
+}
+
+/* Paragraph Styling */
+p {
+    color: blue;
+}
+
+/* Image Styling */
+img {
+    border: 3px solid green;
+}
+
+/* Table Styling */
+td {
+    border: 2px solid black;
+    padding: 5px;
+}
+tr:nth-child(even) {
+    background-color: green;
+}
+tr:nth-child(odd) {
+    background-color: grey;
+}
+
+/* List Styling */
+#item1, #item2, #item3 {
+    text-decoration: none;
+    font-style: italic;
+    list-style-type: circle;
+}
+
+/* Link Pseudo-Classes */
+a:link {
+    color: blue;
+}
+a:visited {
+    color: purple;
+}
+a:hover {
+    color: green;
+}
+a:active {
+    color: red;
+}
+
+/* Button Styling */
+.btn {
+    background-color: orange;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+.btn:hover {
+    background-color: darkorange;
+}
