@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Default font size */
+h1 {
+    font-size: 32px;
+}
+p {
+    font-size: 18px;
+}
+
+/* Medium Screens (600px - 1200px) */
+@media (max-width: 1200px) {
+    h1 {
+        font-size: 24px;
+    }
+    p {
+        font-size: 16px;
+    }
+}
+
+/* Small Screens (<600px) */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 20px;
+    }
+    p {
+        font-size: 14px;
+    }
+}
