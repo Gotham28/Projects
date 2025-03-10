@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Form</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif, sans-serif;
+            background-color: #004d66;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            background: #006080;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        input, select {
+            width: 90%;
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border: none;
+        }
+        input[type="checkbox"], input[type="radio"] {
+            width: auto;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-around;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            color: white;
+        }
+        .submit {
+            background-color: #ff6600;
+        }
+        .reset {
+            background-color: #cc3300;
+        }
+        .output {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Application Form</h2>
+        <form id="appForm">
+            <label>First Name:</label>
+            <input type="text" id="firstName" required><br>
+
+            <label>Last Name:</label>
+            <input type="text" id="lastName" required><br>
+
+            <label>Date of Birth:</label>
+            <input type="date" id="dob" required><br>
+
+            <label>Age:</label>
+            <input type="number" id="age" min="15" max="30" required readonly><br>
+
+            <label>Gender:</label>
+            <select id="gender">
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+            </select><br>
+
+            <label>Email Address:</label>
+            <input type="email" id="email" required><br>
+
+            <label>Positions Available:</label><br>
+            <input type="radio" name="position" value="Junior Developer"> Junior Developer
+            <input type="radio" name="position" value="Mid-level Developer"> Mid-level Developer
+            <input type="radio" name="position" value="Senior Developer"> Senior Developer<br>
+
+            <label>Programming Languages:</label><br>
+            <input type="checkbox" value="Java"> Java
+            <input type="checkbox" value="JavaScript"> JavaScript
+            <input type="checkbox" value="Python"> Python<br>
+
+            <label>Password:</label>
+            <input type="password" id="password" required><br>
+
+            <label>Confirm Password:</label>
+            <input type="password" id="confirmPassword" required><br>
+
+            <div class="buttons">
+                <button type="submit" class="btn submit">Submit</button>
+                <button type="reset" class="btn reset">Reset</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="output" class="output"></div>
+
+    <script>
+        document.getElementById("dob").addEventListener("change", function() {
+            let dob = new Date(this.value);
+            let today = new Date();
+            let age = today.getFullYear() - dob.getFullYear();
+            let monthDiff = today.getMonth() - dob.getMonth();
+            let dayDiff = today.getDate() - dob.getDate();
+            
+            if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+                age--;
+            }
+
+            if (age < 15 || age > 30) {
+                alert("Age must be between 15 and 30 years!");
+                this.value = "";
+                document.getElementById("age").value = "";
+            } else {
+                document.getElementById("age").value = age;
+            }
+        });
+
+        document.getElementById("appForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let firstName = document.getElementById("firstName").value;
+            let lastName = document.getElementById("lastName").value;
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirmPassword").value;
+
+            // Password validation
+            let passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+            if (!passwordPattern.test(password)) {
+                alert("Password must be at least 8 characters long, include one number, one uppercase, and one lowercase letter.");
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            // Show alert with First Name and Last Name
+            alert("First Name: " + firstName + "\\nLast Name: " + lastName);
+
+            // Display below the form
+            document.getElementById("output").innerHTML = "First Name: " + firstName + "<br>Last Name: " + lastName;
+
+            this.reset();
+        });
+    </script>
+
+</body>
+</html>
